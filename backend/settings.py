@@ -17,7 +17,7 @@ SECRET_KEY = 'cb5(k0er@lj^w78x^)gng2s!hbchvy30-x*0f0dk5b=5w&jiy#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','www.bmcminingltd.com', 'https://www.bmcminingltd.com', 'https://bmcminingltd.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'bmcminingltd.com','www.bmcminingltd.com', 'https://www.bmcminingltd.com', 'https://bmcminingltd.com']
 
 
 # Application definition
