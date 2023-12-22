@@ -17,7 +17,7 @@ SECRET_KEY = 'cb5(k0er@lj^w78x^)gng2s!hbchvy30-x*0f0dk5b=5w&jiy#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','www.bmcminingltd.com', 'https://www.bmcminingltd.com', 'https://bmcminingltd.com']
 
 
 # Application definition
@@ -123,10 +123,26 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'bmcminin_bmmc',
+        'USER': 'fashzzht_sheden',
+        'PASSWORD' : 'Shedenbright1',
+        
+        'OPTIONS': {
+            'autocommit': True,
+            'sql_mode':'traditional',
+        },
     }
 }
 
