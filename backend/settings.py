@@ -132,6 +132,7 @@ DATABASES = {
 }
 """
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
