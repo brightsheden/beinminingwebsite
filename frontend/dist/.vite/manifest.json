@@ -1,0 +1,81 @@
+{
+  "index.html": {
+    "assets": [
+      "static/machinery7-p23Ht673.jpg",
+      "static/closeup-VvYmaUlW.jpg",
+      "static/services-7-370x230-TN12dqpT.jpg",
+      "static/yellow-excavator-digging-ore-rich-rock-open-pit-mine-E_NsBmGG.jpg",
+      "static/machinery6-UWkkl7dy.jpg",
+      "static/view-ialomitei-cave-bucegi-mountains-romania-YqKJU-Yh.jpg",
+      "static/heavy-excavator-digging-day-light-X-rY8kTD.jpg",
+      "static/machinery1-WWLNc0vq.jpg",
+      "static/machinery2-Mbpb4lG5.jpg",
+      "static/machinery3-7fxCv7y-.jpg",
+      "static/machinery4-bFsgbpAU.jpg",
+      "static/machinery5-gjRIs206.jpg",
+      "static/rough-ancient-stone-collection-heavy-with-precious-gem-fossils-generated-by-ai_188544-61147-vePk_sW8.jpg"
+    ],
+    "css": [
+      "static/index-sA6KXx3a.css"
+    ],
+    "file": "static/index-JvVIHrjc.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "src/assets/images/closeup.jpg": {
+    "file": "static/closeup-VvYmaUlW.jpg",
+    "src": "src/assets/images/closeup.jpg"
+  },
+  "src/assets/images/heavy-excavator-digging-day-light.jpg": {
+    "file": "static/heavy-excavator-digging-day-light-X-rY8kTD.jpg",
+    "src": "src/assets/images/heavy-excavator-digging-day-light.jpg"
+  },
+  "src/assets/images/machinery1.jpg": {
+    "file": "static/machinery1-WWLNc0vq.jpg",
+    "src": "src/assets/images/machinery1.jpg"
+  },
+  "src/assets/images/machinery2.jpg": {
+    "file": "static/machinery2-Mbpb4lG5.jpg",
+    "src": "src/assets/images/machinery2.jpg"
+  },
+  "src/assets/images/machinery3.jpg": {
+    "file": "static/machinery3-7fxCv7y-.jpg",
+    "src": "src/assets/images/machinery3.jpg"
+  },
+  "src/assets/images/machinery4.jpg": {
+    "file": "static/machinery4-bFsgbpAU.jpg",
+    "src": "src/assets/images/machinery4.jpg"
+  },
+  "src/assets/images/machinery5.jpg": {
+    "file": "static/machinery5-gjRIs206.jpg",
+    "src": "src/assets/images/machinery5.jpg"
+  },
+  "src/assets/images/machinery6.jpg": {
+    "file": "static/machinery6-UWkkl7dy.jpg",
+    "src": "src/assets/images/machinery6.jpg"
+  },
+  "src/assets/images/machinery7.jpg": {
+    "file": "static/machinery7-p23Ht673.jpg",
+    "src": "src/assets/images/machinery7.jpg"
+  },
+  "src/assets/images/rough-ancient-stone-collection-heavy-with-precious-gem-fossils-generated-by-ai_188544-61147.jpg": {
+    "file": "static/rough-ancient-stone-collection-heavy-with-precious-gem-fossils-generated-by-ai_188544-61147-vePk_sW8.jpg",
+    "src": "src/assets/images/rough-ancient-stone-collection-heavy-with-precious-gem-fossils-generated-by-ai_188544-61147.jpg"
+  },
+  "src/assets/images/services-7-370x230.jpg": {
+    "file": "static/services-7-370x230-TN12dqpT.jpg",
+    "src": "src/assets/images/services-7-370x230.jpg"
+  },
+  "src/assets/images/vertical-shot-malachite-mineral-isolated-white-background.jpg": {
+    "file": "static/vertical-shot-malachite-mineral-isolated-white-background-b8Y-bQWC.jpg",
+    "src": "src/assets/images/vertical-shot-malachite-mineral-isolated-white-background.jpg"
+  },
+  "src/assets/images/view-ialomitei-cave-bucegi-mountains-romania.jpg": {
+    "file": "static/view-ialomitei-cave-bucegi-mountains-romania-YqKJU-Yh.jpg",
+    "src": "src/assets/images/view-ialomitei-cave-bucegi-mountains-romania.jpg"
+  },
+  "src/assets/images/yellow-excavator-digging-ore-rich-rock-open-pit-mine.jpg": {
+    "file": "static/yellow-excavator-digging-ore-rich-rock-open-pit-mine-E_NsBmGG.jpg",
+    "src": "src/assets/images/yellow-excavator-digging-ore-rich-rock-open-pit-mine.jpg"
+  }
+}
