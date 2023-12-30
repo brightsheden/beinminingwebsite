@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 class Project(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='project_images/', blank=True, null=True)
+    video = models.FileField(upload_to='project_videos/', blank=True, null=True)
     description = models.TextField()
     client = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    year = models.IntegerField()
+    year = models.DateField(auto_now=False, auto_now_add=False)
     value = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):

@@ -5,6 +5,7 @@ import { deleteProject, getProjectDetail, listProjects } from '../state/Actions'
 import CreateProjectModal from '../components/CreateProjectModal';
 import { resetProjectState } from '../state/Slice';
 import { Alert, Spinner } from 'flowbite-react';
+import { Link } from 'react-router-dom';
 //import EditProjectModal from '../components/EditProjectModal';
 
 function AdminProjectScreen() {
@@ -16,7 +17,7 @@ function AdminProjectScreen() {
 
 
   const projectsstate = useSelector((state)=> state.projects)
-        const {projects:projectss,isRequest,isSuccess,errorMessage, selectedProject,successEdit} = projectsstate
+        const {projects:projectss,isRequest,isSuccess,errorMessage, selectedProject,successEdit,successDelete} = projectsstate
 
         const dispatch = useDispatch()
   // Simulated functions for editing and deleting projects
@@ -44,7 +45,7 @@ function AdminProjectScreen() {
     
     dispatch(listProjects())
     
-  }, [dispatch]);
+  }, [dispatch,successDelete]);
 
   useEffect(()=>{
     if(projectss){
@@ -52,9 +53,10 @@ function AdminProjectScreen() {
 
     }
 
-    
-
-  },[projectss,isSuccess])
+    if(successDelete){
+      dispatch(resetProjectState())
+    }
+  },[projectss,isSuccess,successDelete,dispatch])
 
   useEffect(()=>{
     if(successEdit){
@@ -67,7 +69,10 @@ function AdminProjectScreen() {
     <div className="flex flex-col min-h-screen">
       
       <div className="flex flex-col flex-grow p-4 bg-gray-100">
-      <div><button className='bg-blue-500 p-2  rounded-md my-5 text-base text-white' onClick={()=>window.history.back()}>Back</button></div>
+      <div className='space-x-4'><button className='bg-blue-500 p-2  rounded-md my-5 text-base text-white' onClick={()=>window.history.back()}>Back</button>
+      <Link to={'/admin/dashboard/'}><button className='bg-blue-500 p-2  rounded-md my-5 text-base text-white' >Dashboard</button></Link>
+      
+      </div>
         {/* Stats Card */}
         <div className="flex mb-4">
           <div className="bg-white rounded-lg shadow p-4 flex flex-col justify-between">

@@ -20,9 +20,10 @@ export const projectSlice = createSlice({
       //state.projects = [];
       state.selectedProject = null;
       state.isRequest = false;
-      state.isSuccess = false;
+      //state.isSuccess = false;
       state.successCreate =false;
       state.successEdit=false;
+      state.successDelete=false
       state.errorMessage = '';
     },
 
@@ -35,7 +36,6 @@ export const projectSlice = createSlice({
       .addCase(listProjects.fulfilled, (state, action) => {
         state.isRequest = false;
         state.isSuccess = true;
-    
         state.projects = action.payload;
       })
       .addCase(listProjects.rejected, (state, action) => {
@@ -63,7 +63,7 @@ export const projectSlice = createSlice({
         state.isRequest = false;
         state.isSuccess = true;
         state.successCreate = true;
-        state.projects = [...state.projects, action.payload];
+        state.projects = [...state.projects, action.payload]
       })
       .addCase(createProject.rejected, (state, action) => {
         state.isRequest = false;
@@ -98,7 +98,7 @@ export const projectSlice = createSlice({
         //state.isSuccess = true;
        state.successDelete = true
         // Remove the deleted project from the list
-        state.projects = state.projects.filter(project => project.id !== action.payload.id);
+        state.data = action.payload
       })
       .addCase(deleteProject.rejected, (state, action) => {
         state.isRequest = false;
@@ -129,6 +129,8 @@ export const teamSlice = createSlice({
       state.selectedTeam = null;
       state.isRequest = false;
       state.isSuccess = false;
+      state.successCreate=false;
+      state.successDelete=false
       state.errorMessage = '';
     },
   },
@@ -201,6 +203,7 @@ export const teamSlice = createSlice({
         state.isRequest = false;
         state.successDelete = true;
         // Remove the deleted team from the list
+      
         state.teams = state.teams.filter(team => team.id !== action.payload.id);
       })
       .addCase(deleteTeam.rejected, (state, action) => {

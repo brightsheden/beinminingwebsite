@@ -42,7 +42,7 @@ class UserSerializerWithToken(UserSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ('id', 'name', 'image', 'description', 'client', 'location', 'year', 'value')
+        fields = ('id', 'name', 'image','video', 'description', 'client', 'location', 'year', 'value')
 
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:

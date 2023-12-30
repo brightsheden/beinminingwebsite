@@ -1,22 +1,25 @@
 // ... other imports
 
-import { Button, FileInput, Label, Modal, TextInput, Textarea } from 'flowbite-react';
+import { Button, FileInput, Label, Modal, Spinner, TextInput, Textarea } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editProject } from '../state/Actions';
 import { resetProjectState } from '../state/Slice';
 import axios from 'axios';
+import ReactPlayer from 'react-player'
 
 
 function EditProjectModal({ openEditModal, setOpenEditModal, selectedProject }) {
   const [name, setName] = useState('');
   const [client, setClient] = useState('');
   const [image, setImage] = useState('');
+  const [video, setVideo] = useState('');
   const [location, setLocation] = useState('');
   const [year, setYear] = useState('');
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState()
+  const [uploadingImage, setUploadingIMage] = useState()
 
   const onCloseModal = () => {
     setOpenEditModal(false);
@@ -24,6 +27,7 @@ function EditProjectModal({ openEditModal, setOpenEditModal, selectedProject }) 
     setName('');
     setClient('');
     setImage('');
+    setVideo('')
     setLocation('');
     setYear('');
     setValue('');
@@ -33,6 +37,8 @@ function EditProjectModal({ openEditModal, setOpenEditModal, selectedProject }) 
   const [formData, setFormData] = useState({
     image: '',
     imagePreview: '',
+    video: '',
+    videoPreview: '',
   });
 
 
@@ -45,6 +51,7 @@ function EditProjectModal({ openEditModal, setOpenEditModal, selectedProject }) 
       setName(selectedProject.name || '');
       setClient(selectedProject.client || '');
       setImage(selectedProject.image || '');
+      setVideo(selectedProject.video || '');
       setLocation(selectedProject.location || '');
       setYear(selectedProject.year || '');
       setValue(selectedProject.value || '');
@@ -52,7 +59,10 @@ function EditProjectModal({ openEditModal, setOpenEditModal, selectedProject }) 
 
       setFormData({
         image: selectedProject.image || '',
-        imagePreview: selectedProject.image ? URL.createObjectURL(new Blob([selectedProject.image])) : '',
+      
+
+        video: selectedProject.video || '',
+      
       });
     }
   }, [selectedProject]);
@@ -73,27 +83,62 @@ function EditProjectModal({ openEditModal, setOpenEditModal, selectedProject }) 
     }
   };
 
+  //setImageUrl(URL.createObjectURL(file));
+
       const uploadFileHandler = async  (e)=>{
         const file = e.target.files[0]
         const formData = new FormData()
+        setFormData({
+          ...formData,
+          [e.target.name]: file,
+          imagePreview: URL.createObjectURL(file),
+        });
         formData.append('image',file)
         formData.append('project_id', selectedProject?.id)
         console.log("file is uploading")
-        setUploading(true)
+        setUploadingIMage(true)
 
         try {
             const config = {
                 "content-type" : "multipart/form/data"
             }
             const {data} =await axios.put("/api/projects/upload/", formData,config)
-            setUploading(false)
-            setImage(data)
+            setUploadingIMage(false)
+       
         } catch (error) {
-            setUploading(false)
+            setUploadingIMage(false)
             
         }
 
     }
+
+    const uploadVideoHandler = async  (e)=>{
+      const file = e.target.files[0]
+      const formData = new FormData()
+      formData.append('video',file)
+      setFormData({
+        ...formData,
+        [e.target.name]: file,
+        videoPreview: URL.createObjectURL(file),
+      });
+      formData.append('project_id', selectedProject?.id)
+      console.log("file is uploading")
+      setUploading(true)
+
+      try {
+          const config = {
+              "content-type" : "multipart/form/data"
+          }
+          const {data} =await axios.put("/api/projects/upload/video/", formData,config)
+          setUploading(false)
+      
+      } catch (error) {
+          setUploading(false)
+          
+      }
+
+  }
+
 
 
   const dispatch = useDispatch();
@@ -116,13 +161,13 @@ function EditProjectModal({ openEditModal, setOpenEditModal, selectedProject }) 
     dispatch(editProject(projectData));
   };
 
-  useEffect(() => {
+ { useEffect(() => {
    
     if (successEdit) {
         dispatch(resetProjectState())
         onCloseModal();
     }
-  }, [dispatch,successEdit]);
+  }, [dispatch,successEdit,onCloseModal]);}
 
   return (
     <>
@@ -146,13 +191,34 @@ function EditProjectModal({ openEditModal, setOpenEditModal, selectedProject }) 
             </div>
             <div>
               <div className="mb-2 block">
+              
+             
+              {formData.imagePreview ? (<img src={formData.imagePreview} alt="Image Preview" />):
+              (<img src={selectedProject?.image} alt="Image" />)} 
 
-                <img src={formData.image}/>
+             
+
+               
                 <Label htmlFor="image" value="Image" />
               </div>
               <FileInput id="image" name="image" onChange={uploadFileHandler} />
             </div>
-            {/* ... other input fields ... */}
+
+            <div>
+              <div className="mb-2 block">
+                {uploading && (<Spinner/>)}
+
+              {formData.videoPreview? ( <ReactPlayer controls url={formData.videoPreview} />) : (<ReactPlayer controls url={selectedProject?.video} />)}
+              
+             
+               
+             
+             
+                <Label htmlFor="video" value="video" />
+              </div>
+              <FileInput id="video" name="video" onChange={uploadVideoHandler} />
+            </div>
+           
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="client" value="Client" />

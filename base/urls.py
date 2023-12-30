@@ -2,7 +2,7 @@ from django.urls import path, include
 from .views import (
     project_list_create, project_detail,
     team_list_create, team_detail,
-    blog_list_create, blog_detail,uploadImage,uploadImageTeam,uploadImageBlog,
+    blog_list_create, blog_detail,uploadImage,uploadImageTeam,uploadImageBlog,uploadProjectVideo,
     MyTokenObtainPairView
 
 )
@@ -18,6 +18,7 @@ urlpatterns = [
     path('blogs/', blog_list_create, name='blog-list-create'),
     path('blogs/<int:pk>/', blog_detail, name='blog-detail'),
     path('projects/upload/', uploadImage, name="image-upload"),
+    path('projects/upload/video/', uploadProjectVideo, name="video-upload"),
     path('teams/upload/', uploadImageTeam, name="image-upload-tea team"),
     path('teams/<int:pk>/', team_detail, name='team-detail'),
     path('blogs/upload/', uploadImageBlog, name="image-upload-blog"),

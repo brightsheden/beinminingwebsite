@@ -8,7 +8,9 @@ const ProjectList = ({ projects, onDelete, onEdit, selectedProject }) => {
 
     const openModal = ()=>{
         setOpenEditModal(true)
+        console.log('open modal')
     }
+    
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -74,10 +76,10 @@ const ProjectList = ({ projects, onDelete, onEdit, selectedProject }) => {
                     </td>
 
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                     {project.client}
+                     {project.client} 
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {project.image}
+                    <img src={project.image}  className="w-10 h-10 rounded-lg" />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {project.location}

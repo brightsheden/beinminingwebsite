@@ -8,6 +8,7 @@ function CreateProjectModal({ openModal, setOpenModal }) {
   const [name, setName] = useState('');
   const [client, setClient] = useState('');
   const [image, setImage] = useState('');
+  const [video, setVideo] = useState('');
   const [location, setLocation] = useState('');
   const [year, setYear] = useState('');
   const [value, setValue] = useState('');
@@ -18,25 +19,28 @@ function CreateProjectModal({ openModal, setOpenModal }) {
     setName('');
     setClient('');
     setImage('');
+    setVideo('');  // Reset video state
     setLocation('');
     setYear('');
     setValue('');
     setDescription('');
   };
 
+
   const [formData, setFormData] = useState({
     image: '',
     imagePreview: '',
+    video: '',    // New state for video
+    videoPreview: '',  // New state for video preview
   });
 
   const handleChange = (e) => {
-    if (e.target.name === 'image') {
-      // Handle image file separately for preview
+    if (e.target.name === 'image' || e.target.name === 'video') {
       const file = e.target.files[0];
       setFormData({
         ...formData,
         [e.target.name]: file,
-        imagePreview: URL.createObjectURL(file),
+        [e.target.name + 'Preview']: URL.createObjectURL(file),
       });
     } else {
       setFormData({
@@ -44,8 +48,7 @@ function CreateProjectModal({ openModal, setOpenModal }) {
         [e.target.name]: e.target.value,
       });
     }
-  };
-
+  }
   const dispatch = useDispatch();
   const projectsstate = useSelector((state) => state.projects);
   const { isRequest, successCreate, errorMessage } = projectsstate;
@@ -55,16 +58,15 @@ function CreateProjectModal({ openModal, setOpenModal }) {
     const projectData = {
       name,
       image: formData.image,
+      video: formData.video,  // Include video in projectData
       client,
       location,
       year,
       value,
       description,
     };
-    dispatch(createProject(projectData))
-    
+    dispatch(createProject(projectData));
   };
-
   useEffect(() => {
     if (successCreate) {
       onCloseModal();
@@ -97,7 +99,20 @@ function CreateProjectModal({ openModal, setOpenModal }) {
               </div>
               <FileInput id="image" name="image" onChange={handleChange} required />
             </div>
-            {/* ... other input fields ... */}
+
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="video" value="Video" />
+              </div>
+              <FileInput id="video" name="video" onChange={handleChange} accept="video/*" required />
+              {formData.videoPreview && (
+                <video width="100%" height="200" controls>
+                  <source src={formData.videoPreview} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+            </div>
+          
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="client" value="Client" />
@@ -129,8 +144,9 @@ function CreateProjectModal({ openModal, setOpenModal }) {
               <div className="mb-2 block">
                 <Label htmlFor="Yaer" value="Year" />
               </div>
-              <TextInput
+              <input
                 id="date"
+                type='date'
                 placeholder="yaer"
                 value={year}
                 onChange={(event) => setYear(event.target.value)}

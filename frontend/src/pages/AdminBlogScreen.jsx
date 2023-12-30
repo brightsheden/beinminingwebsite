@@ -48,7 +48,10 @@ const AdminBlogsDashboard = () => {
   return (
     <div className="container mx-auto p-8">
 
-<div><button className='bg-blue-500 p-2  rounded-md my-5 text-base text-white' onClick={()=>window.history.back()}>Back</button></div>
+  <div className='space-x-4'><button className='bg-blue-500 p-2  rounded-md my-5 text-base text-white' onClick={()=>window.history.back()}>Back</button>
+      <Link to={'/admin/dashboard/'}><button className='bg-blue-500 p-2  rounded-md my-5 text-base text-white' >Dashboard</button></Link>
+      
+      </div>
      
       <h2 className="text-2xl font-semibold mb-4">Admin Blogs Dashboard</h2>
 

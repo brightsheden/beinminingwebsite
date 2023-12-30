@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { createTeam } from '../state/Actions';
+import {  resetTeamState } from '../state/Slice';
 
 function AddNewTeamScreen() {
   const [name, setName] = useState('');
@@ -17,7 +18,7 @@ function AddNewTeamScreen() {
 
 
   const teamstate = useSelector((state)=> state.teams)
-  const { selectedTeam, isRequest,isSuccess,successCreate} = teamstate
+  const { selectedTeam, isRequest,isSuccess,successCreate, errorMessage} = teamstate
 
   const dispatch = useDispatch()
   const handleSubmit = (e) => {
@@ -35,13 +36,17 @@ function AddNewTeamScreen() {
     if(successCreate){
 
       navigate('/admin/teams')
+      dispatch(resetTeamState())
 
     }
-  },[successCreate,navigate])
+  },[successCreate,navigate, dispatch])
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-700 to-indigo-800 text-black">
       <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
+        {isRequest && (<p className='p-4 bg-blue-200'>Loading..</p>)}
+        {successCreate && (<p className='p-4 bg-blue-200'>Created Successfully</p>)}
+        {errorMessage && (<p className='p-4 bg-blue-200'>{errorMessage}</p>)}
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">Add New Team</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

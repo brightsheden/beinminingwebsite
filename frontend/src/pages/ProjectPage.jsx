@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { getProjectDetail } from '../state/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import ReactPlayer from 'react-player'
 
 function ProjectPage() {
   const projectsState = useSelector((state) => state.projects);
@@ -41,7 +42,10 @@ function ProjectPage() {
             <img className="w-full" src={selectedProject?.image} alt={selectedProject?.name} />
           </div>
 
-          <div className="text-2xl mb-4">More Photos</div>
+          <div className="text-2xl mb-4">
+          <ReactPlayer controls url={selectedProject?.video} />
+          
+          </div>
 
           <ul className="text-lg">
             <li className="flex gap-4 items-center">

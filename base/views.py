@@ -90,7 +90,15 @@ def uploadImage(request):
     project.save()
     return Response("image was uploaded")
 
-
+@api_view(['PUT'])
+def uploadProjectVideo(request):
+    data = request.data
+    
+    project_id=data['project_id']
+    project =  Project.objects.get(id=project_id)
+    project.video = request.FILES.get('video')
+    project.save()
+    return Response("video was uploaded")
 
 
 @api_view(['GET', 'POST'])
